@@ -59,5 +59,31 @@ stages:
            inputs:
              script: 'trivy fs --format table -o fs.html .'
         
+- stage: 
+  displayName: docker
+
+  jobs:
+  - job: BuildAndPush
+    displayName: Build and Push
+
+    steps:
+    - script: |
+        whoami
+        groups
+        ls -l /var/run/docker.sock
+        docker ps
+      displayName: 'Docker Debug'
+
+    - task: Maven@4
+      inputs:
+        mavenPomFile: 'pom.xml'
+        goals: 'clean package'
+
+    - task: Docker@2
+      inputs:
+           containerRegistry: 'acr-conn'
+           repository:  'classregistry'
+           command: 'buildAndPush'
+           Dockerfile: '**/Dockerfile'
+
      
-              
