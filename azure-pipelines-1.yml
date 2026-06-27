@@ -17,15 +17,15 @@ stages:
   jobs:
     - job: compile
       steps:
-        - 
-- task: Maven@4
-  inputs:
-    azureSubscription: 'Azure subscription 1(1)(8d924bc3-7a13-47ee-9bfb-69b45fab07d4)'
-    mavenPomFile: 'pom.xml'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    mavenVersionOption: 'Default'
-    mavenAuthenticateFeed: false
-    effectivePomSkip: false
-    sonarQubeRunAnalysis: false
+        -  task: Maven@4
+           inputs:
+             azureSubscription: 'Azure subscription 1(1)(8d924bc3-7a13-47ee-9bfb-69b45fab07d4)'
+             mavenPomFile: 'pom.xml'
+             goals: 'compile'
+             publishJUnitResults: true
+             testResultsFiles: '**/surefire-reports/TEST-*.xml'
+             javaHomeOption: 'JDKVersion'
+             mavenVersionOption: 'Default'
+             mavenAuthenticateFeed: false
+             effectivePomSkip: false
+             sonarQubeRunAnalysis: false
