@@ -67,20 +67,12 @@ stages:
     displayName: Build and Push
 
     steps:
-    - script: |
-        whoami
-        groups
-        ls -l /var/run/docker.sock
-        docker ps
-      displayName: 'Docker Debug'
+      - task: CmdLine@2
+        inputs:
+          script: 'mvn package'
 
-    - task: Maven@4
-      inputs:
-        mavenPomFile: 'pom.xml'
-        goals: 'clean package'
-
-    - task: Docker@2
-      inputs:
+      - task: Docker@2
+        inputs:
            containerRegistry: 'acr-conn'
            repository:  'classregistry'
            command: 'buildAndPush'
