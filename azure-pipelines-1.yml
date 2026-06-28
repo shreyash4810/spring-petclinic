@@ -82,6 +82,6 @@ stages:
            containerRegistry: 'acr-conn'
            repository:  'classregistry'
            command: 'buildAndPush'
-           Dockerfile: 'Dockerfile'
+           Dockerfile: 'dockerfile'
 
      
